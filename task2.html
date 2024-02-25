@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .album-cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Music Player</h2>
+        <div class="album-cover">
+            <img src="album_cover.jpg" alt="Album Cover">
+        </div>
+        <audio id="audio" controls>
+            <source src="music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div>
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+        <div>
+            <button id="shuffle">Shuffle</button>
+            <button id="repeat">Repeat</button>
+        </div>
+        <div id="progress-container">
+            <div id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for music player functionality
+        const audio = document.getElementById('audio');
+        const playBtn = document.getElementById('play');
+        const pauseBtn = document.getElementById('pause');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const volumeControl = document.getElementById('volume');
+        const progress = document.getElementById('progress');
+
+        let isPlaying = false;
+
+        // Play function
+        function play() {
+            audio.play();
+            isPlaying = true;
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-block';
+        }
+
+        // Pause function
+        function pause() {
+            audio.pause();
+            isPlaying = false;
+            playBtn.style.display = 'inline-block';
+            pauseBtn.style.display = 'none';
+        }
+
+        // Previous function
+        function prev() {
+            // Logic to play previous track
+        }
+
+        // Next function
+        function next() {
+            // Logic to play next track
+        }
+
+        // Volume control function
+        function setVolume() {
+            audio.volume = volumeControl.value;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const duration = audio.duration;
+            const currentTime = audio.currentTime;
+            const progressPercent = (currentTime / duration) * 100;
+            progress.style.width = ${progressPercent}%;
+        }
+
+        // Event listeners
+        playBtn.addEventListener('click', play);
+        pauseBtn.addEventListener('click', pause);
+        prevBtn.addEventListener('click', prev);
+        nextBtn.addEventListener('click', next);
+        volumeControl.addEventListener('input', setVolume);
+        audio.addEventListener('timeupdate', updateProgress);
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
